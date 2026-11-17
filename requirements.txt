@@ -1,0 +1,11 @@
+Django>=5.0,<6.0
+djangorestframework>=3.15
+django-cors-headers>=4.4
+python-dotenv>=1.0
+psycopg[binary]>=3.2
+yt-dlp>=2024.10.22
+faster-whisper>=1.0.3
+nltk>=3.9
+scikit-learn>=1.5
+requests>=2.32
+chromadb>=0.5.5

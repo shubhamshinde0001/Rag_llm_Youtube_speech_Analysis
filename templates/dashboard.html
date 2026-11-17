@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Political Speech Intelligence</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-icon">PS</span><div><b>SpeechIntel</b><small>Political Speech Analytics</small></div></div>
+    <nav><a class="active" href="/">Overview</a><a href="#new-speech">Analyze speech</a><a href="#analysis">Analytics</a><a href="#ask">Ask transcript</a></nav>
+    <div class="side-note">Hindi · English<br>India-focused analysis</div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><p class="eyebrow">RESEARCH WORKSPACE</p><h1>Political Speech Intelligence</h1><p class="muted">Analyze public speeches using transcription, NLP and local AI.</p></div><span class="status-pill">LOCAL AI · OLLAMA</span></header>
+    <section class="panel" id="new-speech">
+      <div class="section-heading"><div><h2>Analyze a YouTube speech</h2><p class="muted">Submit a public video URL and select the politician record.</p></div></div>
+      <form id="speechForm" class="form-grid">
+        <label>Politician<select id="politicianSelect" required><option value="">Loading politicians...</option></select></label>
+        <label>YouTube URL<input id="youtubeUrl" type="url" placeholder="https://www.youtube.com/watch?v=..." required></label>
+        <label>Speech title (optional)<input id="speechTitle" placeholder="Public rally / interview / address"></label>
+        <label>Location (optional)<input id="speechLocation" placeholder="e.g. Pune, Maharashtra"></label>
+        <div class="form-actions"><button class="primary" type="submit">Start analysis</button><span id="formMessage" class="muted"></span></div>
+      </form>
+    </section>
+    <section class="panel">
+      <div class="section-heading"><div><h2>Speech library</h2><p class="muted">Select a processed speech to inspect its analytics.</p></div><button id="refreshBtn" class="secondary">Refresh</button></div>
+      <div id="speechList" class="speech-list"><p class="muted">Loading speeches...</p></div>
+    </section>
+    <section id="analysis" class="hidden">
+      <div class="section-heading"><div><p class="eyebrow">SPEECH REPORT</p><h2 id="speechHeading">Speech analytics</h2><p id="speechMeta" class="muted"></p></div><span id="speechStatus" class="status-pill"></span></div>
+      <div class="stats-grid">
+        <div class="stat-card"><small>Transcript words</small><strong id="wordTotal">—</strong></div>
+        <div class="stat-card"><small>Detected language</small><strong id="language">—</strong></div>
+        <div class="stat-card"><small>Issue segments</small><strong id="issueTotal">—</strong></div>
+        <div class="stat-card"><small>Duration</small><strong id="duration">—</strong></div>
+      </div>
+      <div class="chart-grid">
+        <div class="panel chart-panel"><h3>Most repeated words</h3><canvas id="wordsChart"></canvas></div>
+        <div class="panel chart-panel"><h3>Issue discussion mentions</h3><canvas id="issuesChart"></canvas></div>
+        <div class="panel chart-panel"><h3>Repeated two-word phrases</h3><canvas id="bigramsChart"></canvas></div>
+        <div class="panel chart-panel"><h3>Repeated three-word phrases</h3><canvas id="trigramsChart"></canvas></div>
+      </div>
+      <div class="panel"><h3>Issue evidence</h3><p class="muted">Classified transcript excerpts. Mentions are model-generated labels and should be reviewed.</p><div id="issueEvidence"></div></div>
+      <div class="panel"><h3>Transcript</h3><div id="transcript" class="transcript"></div></div>
+      <div class="panel" id="ask"><h3>Ask questions about this speech</h3><p class="muted">Answers use retrieved transcript segments and include timestamps.</p><form id="askForm" class="ask-form"><input id="question" placeholder="What did the speaker say about employment?" required><button class="primary">Ask Ollama</button></form><div id="answer" class="answer"></div></div>
+    </section>
+    <footer>Political Speech Intelligence · Evidence-led analysis · Local Ollama</footer>
+  </main>
+</div>
+<script src="/static/js/app.js"></script>
+</body></html>
